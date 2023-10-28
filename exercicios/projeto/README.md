@@ -52,6 +52,7 @@ O cliente também pode depositar dinheiro em sua conta, passando apenas o valor 
     - [ ] nome
     - [ ] cpf
     - [ ] renda
+    - [ ] conta
   - Métodos
     - [ ] registrar cliente
   - [ ] Testes

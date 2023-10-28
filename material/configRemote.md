@@ -43,7 +43,7 @@ git remote add upstream LINK-DO-REPOSITORIO-RAIZ
 Nessa aula, por exemplo, você faria algo assim:
 
 ```bash
-git remote add upstream LINK REPOSITORIO RAIZ
+git remote add upstream https://github.com/reprograma/on28-ijs-projeto1
 ```
 
 Agora, se repetirmos o comando de verificação dos remotes, teremos o upstream listado:

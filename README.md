@@ -280,6 +280,9 @@ A palavra polimorfismo significa "de muitas formas", e no contexto de POO, tem d
 ## Projeto 
 * [Projeto da semana](/exercicios/projeto/)
 
+## Links que apareceram na aula
+* [sobre gitignore](https://www.atlassian.com/br/git/tutorials/saving-changes/gitignore)
+* [sobre stash](https://www.atlassian.com/br/git/tutorials/saving-changes/git-stash)
 
 <p align="center">
 Desenvolvido com :purple_heart:  
