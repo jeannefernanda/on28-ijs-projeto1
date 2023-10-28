@@ -1,5 +1,5 @@
 const { Cliente } = require('./Cliente');
-const { Conta } = require('./Conta');
+const { Conta } = require('../Conta/Conta');
 
 require('./Cliente')
 

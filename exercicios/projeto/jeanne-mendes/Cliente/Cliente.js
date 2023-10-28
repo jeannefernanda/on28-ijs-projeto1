@@ -1,4 +1,4 @@
-const { Conta } = require("./Conta");
+const { Conta } = require("../Conta/Conta");
 
 class Cliente{
     //
