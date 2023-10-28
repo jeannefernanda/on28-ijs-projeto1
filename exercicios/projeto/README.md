@@ -47,18 +47,18 @@ O cliente também pode depositar dinheiro em sua conta, passando apenas o valor 
   <img src="../../assets/diagrama_bancao.png" alt="diagrama banco" >
 
 ### to-do
-- [ ] Cliente
+- [x] Cliente
   - Atributos
-    - [ ] nome
-    - [ ] cpf
-    - [ ] renda
-    - [ ] conta
+    - [x] nome
+    - [x] cpf
+    - [x] renda
+    - [x] conta
   - Métodos
-    - [ ] registrar cliente
-  - [ ] Testes
-    - [ ] verificar se instancia é criada
-    - [ ] verificar se dados estão validos
-    - [ ] verificar dados invalidos
+    - [x] registrar cliente
+  - [x] Testes
+    - [x] verificar se instancia é criada
+    - [x] verificar se dados estão validos
+    - [x] verificar dados invalidos
 
 - [ ] Conta
   - Atributos
@@ -72,9 +72,26 @@ O cliente também pode depositar dinheiro em sua conta, passando apenas o valor 
     - [ ] transferir
     - [ ] getSaldo
     - [ ] setSaldo
+    - [ ] criarConta
     - [ ] pix
       - [ ] criar pix
         - [ ] email
         - [ ] telefone
         - [ ] cpf
+  - [ ] Testes
+    - [x] verificar instancia criada
+    - [x] verificar se conta foi criada com dados validos
+    - [x] verificar se manda erro ao criar com dado invalido
+    - [ ] depositar 
+      - [ ] retornar erro caso tipo incorreto
+      - [ ] retorna erro caso deposito negativo
+      - [ ] sucesso para deposito positivo 
+    - [x] sacar 
+      - [ ] retornar erro caso tipo incorreto
+      - [x] retornar erro caso não tenha saldo
+    - [ ] transferir
+      - [ ] retornar erro caso não tenha saldo
+      - [ ] retornar erro caso conta de recebimento invalida
+  - PIX
+    - [ ] 
 
