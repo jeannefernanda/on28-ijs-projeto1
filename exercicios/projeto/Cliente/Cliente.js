@@ -29,3 +29,8 @@ registrar(nome, cpf, renda, conta){
 }
 
 module.exports = Cliente;
+const cliente = new Cliente()
+console.log(cliente)
+const conta = new Conta()
+cliente.registrar('teste', "19828474", 500, conta)
+console.log(cliente)

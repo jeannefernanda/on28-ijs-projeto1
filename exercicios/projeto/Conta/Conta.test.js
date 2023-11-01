@@ -85,8 +85,58 @@ describe("Testes da Classe Conta", ()=>{
         expect(()=> conta.depositar(" ")).toThrow("Valor inválido para depósito")
         expect(conta.getSaldo()).toBe(1000)
 
+    });
+
+    test('Criar uma chave pix por cpf com sucesso', () => {
+        //setup
+        const conta = new Conta();
+        
+        //ação
+        const operacao = conta.criarChavePix('817.012.092-68', 'CPF');
+
+        //verificação
+        expect(operacao).toBe('Chave pix por cpf criada com sucesso');
+        expect(conta.chavesPix.cpf).toBe('817.012.092-68')
+    });
+
+    
+    test('retornar mensagem de erro ao tentar cadastrar chave pix com cpf invalido', () => {
+        //setup
+        const conta = new Conta();
+        
+        //ação
+        //const operacao = conta.criarChavePix('345', 'CPF');
+        //verificação
+        expect(() => conta.criarChavePix('345', 'CPF')).toThrow("CPF inválido")
     })
 
+    test('criar pix por telefone com sucesso', () => {
+        //setup
+        const conta = new Conta();
+        
+        //ação
+        const operacao = conta.criarChavePix('69992838455', 'TELEFONE');
+
+        //verificação
+        expect(operacao).toBe('Chave pix por telefone criada com sucesso');
+        expect(conta.chavesPix.telefone).toBe('69992838455');
+    })
+
+    test('criar pix por email com sucesso', () => {
+        //setup
+        const conta = new Conta();
+        
+        //ação
+        const operacao = conta.criarChavePix('aluna@email.com.br', 'EMAIL');
+
+        //verificação
+        expect(operacao).toBe('Chave pix por e-mail criada com sucesso');
+        expect(conta.chavesPix.email).toBe('aluna@email.com.br');
+    })
+
+    test('', () =>{
+        
+    })
 
 
 })
