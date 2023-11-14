@@ -7,7 +7,7 @@ describe("Testes da Classe ContaStandard", () => {
     expect(conta instanceof ContaGold).toBe(true);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("criar conta de com dados válidos e renda compatível", () => {
@@ -25,7 +25,7 @@ describe("Testes da Classe ContaStandard", () => {
 
     // remover conta da lista de contas
 
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna erro ao criar conta de com dados válidos e renda incompatível", () => {
@@ -42,7 +42,7 @@ describe("Testes da Classe ContaStandard", () => {
     );
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna erro ao criar ContaStandard com dados inválidos", () => {
@@ -59,7 +59,7 @@ describe("Testes da Classe ContaStandard", () => {
     );
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna sucesso ao sacar 100 da conta", () => {
@@ -70,18 +70,18 @@ describe("Testes da Classe ContaStandard", () => {
     expect(conta.getSaldo()).toBe(900);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna mensagem de erro ao sacar -100 reais da conta", () => {
     const conta = new ContaGold();
     conta.criarConta("1234", "12345", 1000, 5000);
 
-    expect(() => conta.sacar(-100)).toThrow("Valor inválido para saque");
+    expect(() => conta.sacar(-100)).toThrow("Valor inválido");
     expect(conta.getSaldo()).toBe(1000);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna mensagem de erro ao sacar valor maior que o saldo da conta", () => {
@@ -92,7 +92,7 @@ describe("Testes da Classe ContaStandard", () => {
     expect(conta.getSaldo()).toBe(100);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna sucesso ao depositar 100 reais da conta", () => {
@@ -103,29 +103,29 @@ describe("Testes da Classe ContaStandard", () => {
     expect(conta.getSaldo()).toBe(1100);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna mensagem de erro ao depositar -100 reais da conta", () => {
     const conta = new ContaGold();
     conta.criarConta("1234", "12345", 1000, 6000);
 
-    expect(() => conta.depositar(-100)).toThrow("Valor inválido para depósito");
+    expect(() => conta.depositar(-100)).toThrow("Valor inválido");
     expect(conta.getSaldo()).toBe(1000);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna mensagem de erro ao depositar valor não numerico", () => {
     const conta = new ContaGold();
     conta.criarConta("1234", "12345", 1000, 7000);
 
-    expect(() => conta.depositar(" ")).toThrow("Valor inválido para depósito");
+    expect(() => conta.depositar(" ")).toThrow("Valor inválido");
     expect(conta.getSaldo()).toBe(1000);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna mensagem de erro ao sacar valor maior que o limite transacional", () => {
@@ -138,7 +138,7 @@ describe("Testes da Classe ContaStandard", () => {
     expect(conta.getSaldo()).toBe(5100);
 
     // remover conta da lista de contas
-    conta.destruir();
+    conta.destruirListaDeContas();
   });
 
   test("retorna mensagem de erro ao transferir por numero de conta, valor maior que o limite transacional", () => {
@@ -154,7 +154,7 @@ describe("Testes da Classe ContaStandard", () => {
     expect(contaReceptora.getSaldo()).toBe(100);
 
     // remover conta da lista de contas
-    contaEmissora.destruir();
-    contaReceptora.destruir();
+    contaEmissora.destruirListaDeContas();
+    contaReceptora.destruirListaDeContas();
   });
 });

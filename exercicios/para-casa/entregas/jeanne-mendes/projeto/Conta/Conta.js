@@ -19,7 +19,7 @@ class Conta {
   }
 
   //metodo para destruir objeto da lista de contas pra salvar sua memoria
-  destruir() {
+  destruirListaDeContas() {
     let i = Conta.listaContas.indexOf(this);
     Conta.listaContas.splice(i, 1);
   }
@@ -35,26 +35,35 @@ class Conta {
       throw new Error("Dados inválidos para cadastro");
     }
   }
-  sacar(valor) {
+
+  verificaValor(valor){
     if (valor > 0 && typeof valor === "number") {
-      if (this.#saldo - valor > 0) {
-        const saldoAtualizado = this.#saldo - valor;
-        this.setSaldo(saldoAtualizado);
-      } else {
-        throw new Error("Saldo insuficiente");
-      }
+      return valor;
     } else {
-      throw new Error("Valor inválido para saque");
+      throw new Error("Valor inválido");
     }
   }
 
-  depositar(valor) {
-    if (valor > 0 && typeof valor === "number") {
-      const saldoAtualizado = this.#saldo + valor;
+  verificaConta(agencia, conta){
+    
+  }
+
+  sacar(valorDeSaque) {
+    let valor = this.verificaValor(valorDeSaque);
+    if (this.#saldo - valor > 0) {
+      const saldoAtualizado = this.#saldo - valor;
       this.setSaldo(saldoAtualizado);
     } else {
-      throw new Error("Valor inválido para depósito");
+      throw new Error("Saldo insuficiente");
     }
+    
+  }
+
+  depositar(valorDeSaque) {
+    let valor = this.verificaValor(valorDeSaque);
+    const saldoAtualizado = this.#saldo + valor;
+    this.setSaldo(saldoAtualizado);
+    
   }
 
   transferir(valor, agencia, conta) {
