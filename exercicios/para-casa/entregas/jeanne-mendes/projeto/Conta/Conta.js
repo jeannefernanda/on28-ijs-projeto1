@@ -72,27 +72,39 @@ class Conta {
     
   }
 
+  verificaSaldoSuficiente(valor){
+    if (valor < 0) {
+      throw new Error("Valor inválido para transferencia");
+    }
+    if (valor > this.#saldo) {
+      return "Saldo insuficiente.";
+    }
+    return true;
+  }
+
+  atualizarSaldo(conta, valor){
+    if (this.#saldo - valor > 0) {
+      const saldoAtualizado = this.#saldo - valor;
+      this.setSaldo(saldoAtualizado);
+      const saldoContaReceptora = conta.getSaldo() + valor;
+      conta.setSaldo(saldoContaReceptora);
+      return "Tranferencia realizada";
+    }
+  }
+
   transferir(valor, agencia, conta) {
     let contaValida = this.verificaConta(agencia, conta);
     if (!contaValida) {
       throw new Error("Conta não encontrada");
     }
 
-    if (valor < 0) {
-      throw new Error("Valor inválido para transferencia");
+    let result = this.verificaSaldoSuficiente(valor);
+    if(result === true){
+      return this.atualizarSaldo(contaValida, valor)
     }
+    
+    return result;
 
-    if (this.#saldo - valor > 0) {
-      const saldoAtualizado = this.#saldo - valor;
-      this.setSaldo(saldoAtualizado);
-      const saldoContaReceptora = contaValida.getSaldo() + valor;
-      contaValida.setSaldo(saldoContaReceptora);
-      return "Tranferencia realizada";
-    }
-
-    if (valor > this.#saldo) {
-      return "Saldo insuficiente.";
-    }
   }
   pix(valor, chavePix, tipo) {
     let contaValida = Conta.listaContas.find(
@@ -103,21 +115,12 @@ class Conta {
       throw new Error("Chave pix não encontrada");
     }
 
-    if (valor < 0) {
-      throw new Error("Valor inválido para transferencia");
-    }
+    let result = this.verificaSaldoSuficiente(valor);
+    if(result === true){
+      return this.atualizarSaldo(contaValida, valor)
+    }    
+    return result;
 
-    if (this.#saldo - valor > 0) {
-      const saldoAtualizado = this.#saldo - valor;
-      this.setSaldo(saldoAtualizado);
-      const saldoContaReceptora = contaValida.getSaldo() + valor;
-      contaValida.setSaldo(saldoContaReceptora);
-      return "Tranferencia realizada";
-    }
-
-    if (valor > this.#saldo) {
-      return "Saldo insuficiente.";
-    }
   }
 
   getAgencia() {
