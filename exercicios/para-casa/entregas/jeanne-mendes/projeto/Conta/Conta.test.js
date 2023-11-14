@@ -141,7 +141,7 @@ describe("Testes da Classe Conta", () => {
 
     //verificacao
     expect(() => conta.criarChavePix("124861", "CPF")).toThrow(
-      "Erro: CPF inválido"
+      "Erro: cpf inválido"
     );
 
     // remover conta da lista de contas
@@ -215,7 +215,7 @@ describe("Testes da Classe Conta", () => {
 
     //verificação
     expect(() => conta.criarChavePix("699485", "TELEFONE")).toThrow(
-      "Erro: Telefone inválido"
+      "Erro: telefone inválido"
     );
 
     conta.destruirListaDeContas();
@@ -227,7 +227,7 @@ describe("Testes da Classe Conta", () => {
 
     //verificação
     expect(() => conta.criarChavePix("2345678990", "EMAIL")).toThrow(
-      "Erro: Email inválido"
+      "Erro: email inválido"
     );
 
     conta.destruirListaDeContas();
@@ -237,10 +237,8 @@ describe("Testes da Classe Conta", () => {
     //setup
     const conta = new Conta();
 
-    //acao
-    operacao = conta.criarChavePix("2345678990", "CNH");
     //verificação
-    expect(operacao).toBe("Chave inexistente");
+    expect(() => conta.criarChavePix("2345678990", "CNH")).toThrow("Tipo de chavePix inválido");
 
     conta.destruirListaDeContas();
   });

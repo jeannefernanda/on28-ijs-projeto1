@@ -148,40 +148,24 @@ class Conta {
   }
 
   criarChavePix(chavePix, tipo) {
-    switch (tipo) {
-      case "CPF":
-        let regexCPF =
-          /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
-        if (regexCPF.test(chavePix)) {
-          this.chavesPix.cpf = chavePix;
-          return "Chave Pix por cpf criada com sucesso";
-        } else {
-          throw new Error("Erro: CPF inválido");
-        }
-
-      case "EMAIL":
-        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (regexEmail.test(chavePix)) {
-          this.chavesPix.email = chavePix;
-          return "Chave Pix por email criada com sucesso";
-        } else {
-          throw new Error("Erro: Email inválido");
-        }
-
-      case "TELEFONE":
-        let regexTelefone =
-          /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/;
-        if (regexTelefone.test(chavePix)) {
-          this.chavesPix.telefone = chavePix;
-          return "Chave Pix por telefone criada com sucesso";
-        } else {
-          throw new Error("Erro: Telefone inválido");
-        }
-
-      default:
-        return "Chave inexistente";
+    const regexMap = {
+      CPF: /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/,
+      EMAIL: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      TELEFONE: /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/,
+    };
+  
+    if (!regexMap[tipo]) {
+      throw new Error("Tipo de chavePix inválido");
+    }
+  
+    if (regexMap[tipo].test(chavePix)) {
+      this.chavesPix[tipo.toLowerCase()] = chavePix;
+      return `Chave Pix por ${tipo.toLowerCase()} criada com sucesso`;
+    } else {
+      throw new Error(`Erro: ${tipo.toLowerCase()} inválido`);
     }
   }
+  
 }
 
 module.exports = Conta;
