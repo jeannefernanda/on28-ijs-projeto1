@@ -18,7 +18,6 @@ class Conta {
     Conta.listaContas.push(this);
   }
 
-  //metodo para destruir objeto da lista de contas pra salvar sua memoria
   destruirListaDeContas() {
     let i = Conta.listaContas.indexOf(this);
     Conta.listaContas.splice(i, 1);
@@ -45,7 +44,14 @@ class Conta {
   }
 
   verificaConta(agencia, conta){
-    
+    let contaValida = Conta.listaContas.find((contaReceptora) => {
+      let numeroContaReceptora = contaReceptora.getConta();
+      let numeroAgenciaReceptora = contaReceptora.getAgencia();
+      return (
+         numeroContaReceptora === conta && numeroAgenciaReceptora === agencia
+      );
+    });
+    return contaValida;
   }
 
   sacar(valorDeSaque) {
@@ -67,19 +73,7 @@ class Conta {
   }
 
   transferir(valor, agencia, conta) {
-    //LISTA.find(APELIDO PARA ITEM SELECIONADA => COMPARACAO )
-    /**
-     * antes de fazer a transferencia preciso verificar se a conta receptora existe na lista de contas
-     * contaValida vai me retornar a conta se ela existir e undefined se não existir
-     */
-    let contaValida = Conta.listaContas.find((contaReceptora) => {
-      let numeroContaReceptora = contaReceptora.getConta();
-      let numeroAgenciaReceptora = contaReceptora.getAgencia();
-      return (
-        numeroContaReceptora === conta && numeroAgenciaReceptora === agencia
-      );
-    });
-
+    let contaValida = this.verificaConta(agencia, conta);
     if (!contaValida) {
       throw new Error("Conta não encontrada");
     }
@@ -88,7 +82,6 @@ class Conta {
       throw new Error("Valor inválido para transferencia");
     }
 
-    //a conta não pode ficar negativa ao fazer a transferencia,
     if (this.#saldo - valor > 0) {
       const saldoAtualizado = this.#saldo - valor;
       this.setSaldo(saldoAtualizado);
@@ -114,7 +107,6 @@ class Conta {
       throw new Error("Valor inválido para transferencia");
     }
 
-    //a conta não pode ficar negativa ao fazer a transferencia,
     if (this.#saldo - valor > 0) {
       const saldoAtualizado = this.#saldo - valor;
       this.setSaldo(saldoAtualizado);
