@@ -256,7 +256,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarChavePix("email@email.com", "EMAIL");
 
     //ação
-    const operacao = contaEmissor.pix(100, "email@email.com", "email");
+    const operacao = contaEmissor.transferenciaPix(100, "email@email.com", "email");
 
     //verificação
     expect(operacao).toBe("Tranferencia realizada");
@@ -273,7 +273,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarChavePix("email@email.com", "EMAIL");
 
     //verificação
-    expect(() => contaEmissor.pix(100, "email2@email.com", "email")).toThrow(
+    expect(() => contaEmissor.transferenciaPix(100, "email2@email.com", "email")).toThrow(
       "Chave pix não encontrada"
     );
   });
@@ -287,7 +287,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarConta("1234", "13345", 500);
 
     contaReceptor.criarChavePix("email@email.com", "EMAIL");
-    operacao = contaEmissor.pix(1210, "email@email.com", "email");
+    operacao = contaEmissor.transferenciaPix(1210, "email@email.com", "email");
 
     //verificação
     expect(operacao).toBe("Saldo insuficiente.");
@@ -304,7 +304,7 @@ describe("Testes da Classe Conta", () => {
     contaReceptor.criarChavePix("email@email.com", "EMAIL");
 
     //verificação
-    expect(() => contaEmissor.pix(-1210, "email@email.com", "email")).toThrow(
+    expect(() => contaEmissor.transferenciaPix(-1210, "email@email.com", "email")).toThrow(
       "Valor inválido"
     );
   });

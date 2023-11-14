@@ -106,7 +106,7 @@ class Conta {
     return result;
 
   }
-  pix(valor, chavePix, tipo) {
+  transferenciaPix(valor, chavePix, tipo) {
     let contaValida = Conta.listaContas.find(
       (conta) => conta.chavesPix[tipo] === chavePix
     );
